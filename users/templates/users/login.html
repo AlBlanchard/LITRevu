@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Connexion</h2>
+
+<!-- Messages de succès et d'erreur -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Formulaire -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <button type="submit">Se connecter</button>
+</form>
+
+<p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+body {
+    font-family: "Merriweather", serif;
+    background-color: #EAD7C4;
+    color: #2C1D27;
+}
+
+h1, h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: #D4AF37; 
+}
+
+button {
+    font-family: "Poppins", sans-serif;
+    background-color: #A67B5B; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Merriweather&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <!-- Ajout du timestamp pour rafraichir le fichier css dans le navigateur dès qu'une modif est faite -->
+    <link rel="stylesheet" type="text/css" href="{% static 'users/styles.css' %}?v={{ timestamp }}">
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+            <a href="{% url 'login' %}">Connexion</a>
+            <a href="{% url 'register' %}">Inscription</a>
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
