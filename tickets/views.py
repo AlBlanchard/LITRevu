@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import TicketForm
-from .models import Ticket
+from .forms import TicketForm, ReviewForm
+from .models import Ticket, Review
 from django.contrib import messages
 
 
@@ -18,11 +18,12 @@ def create_ticket(request):
     form = TicketForm()
     return render(
         request,
-        "tickets/ticket_form.html",
+        "tickets/form.html",
         {
-            "form": form,
+            "ticket_form": form,
             "form_title": "Créer un ticket",
             "submit_text": "Envoyer",
+            "include_ticket_form": True,
         },
     )
 
@@ -61,3 +62,103 @@ def delete_ticket(request, ticket_id):
         return redirect("home")
 
     return render(request, "tickets/confirm_delete.html", {"ticket": ticket})
+
+
+###### REVIEW ######
+
+
+def create_review(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.ticket = ticket
+            review.user = request.user
+            review.save()
+            messages.success(request, "Avis créé avec succès !")
+            return redirect("home")
+
+    form = ReviewForm()
+    return render(
+        request,
+        "tickets/form.html",
+        {
+            "review_form": form,
+            "ticket": ticket,
+            "form_title": "Créer une critique",
+            "submit_text": "Envoyer",
+            "include_ticket": True,
+            "include_review_form": True,
+        },
+    )
+
+
+def update_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Avis modifié avec succès !")
+            return redirect("home")
+
+    form = ReviewForm(instance=review)
+    return render(
+        request,
+        "tickets/review_form.html",
+        {
+            "form": form,
+            "review": review,
+            "form_title": "Modifier l'avis",
+            "submit_text": "Mettre à jour",
+        },
+    )
+
+
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+
+    if request.method == "POST":
+        review.delete()
+        messages.success(request, "L'avis a été supprimé avec succès !")
+        return redirect("home")
+
+    return render(request, "tickets/confirm_delete.html", {"review": review})
+
+
+###### Critique ######
+def create_ticket_and_review(request):
+    if request.method == "POST":
+        ticket_form = TicketForm(request.POST, request.FILES)
+        review_form = ReviewForm(request.POST)
+
+        if ticket_form.is_valid() and review_form.is_valid():
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+
+            review = review_form.save(commit=False)
+            review.ticket = ticket
+            review.user = request.user
+            review.save()
+
+            messages.success(request, "Ticket et avis créés avec succès !")
+            return redirect("home")
+
+    ticket_form = TicketForm()
+    review_form = ReviewForm()
+    return render(
+        request,
+        "tickets/form.html",
+        {
+            "ticket_form": ticket_form,
+            "review_form": review_form,
+            "form_title": "Créer un ticket et une critique",
+            "submit_text": "Publier",
+            "include_ticket_form": True,  # Active l'affichage du ticket form
+            "include_review_form": True,
+        },
+    )

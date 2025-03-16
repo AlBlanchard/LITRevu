@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ form_title }}</h2> 
+
+    {% if include_ticket %}
+        {% include "tickets/ticket.html" %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if include_ticket_form %}
+            {% include "tickets/ticket_form.html" %}
+        {% endif %}
+
+        {% if include_review_form %}
+            {% include "tickets/review_form.html" %}
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Annuler</a>
+    </form>
+</div>
+{% endblock %}

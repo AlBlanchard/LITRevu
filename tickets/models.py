@@ -8,7 +8,7 @@ class Ticket(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tickets"
     )
-    title = models.CharField(max_length=120)
+    book_title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="tickets_images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
@@ -36,7 +36,7 @@ class Ticket(models.Model):
         super().delete(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title} (créé par {self.user})"
+        return f"{self.book_title} (créé par {self.user})"
 
 
 class Review(models.Model):
@@ -51,8 +51,8 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    headline = models.CharField(max_length=120)
-    body = models.TextField(blank=True)
+    review_title = models.CharField(max_length=120)
+    review = models.TextField(blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

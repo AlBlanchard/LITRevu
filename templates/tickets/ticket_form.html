@@ -1,38 +1,24 @@
-{% extends "base.html" %}
+<div class="form-group">
+    {{ ticket_form.book_title.label_tag }}
+    {{ ticket_form.book_title }}
+</div>
 
-{% block content %}
-<div class="container">
-    <h2>{{ form_title }}</h2> 
+<div class="form-group">
+    {{ ticket_form.description.label_tag }}
+    {{ ticket_form.description }}
+</div>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <div class="form-group">
-            {{ form.title.label_tag }}
-            {{ form.title }}
-        </div>
-
-        <div class="form-group">
-            {{ form.description.label_tag }}
-            {{ form.description }}
-        </div>
-
-        <div class="form-group">
-            {{ form.image.label_tag }}
-            <div id="image-preview-container" style="margin-top: 10px;">
-                {% if ticket.image %}
-                    <img id="image-preview" src="{{ ticket.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
-                {% else %}
-                    <img id="image-preview" style="display: none; max-width: 300px; height: auto;">
-                {% endif %}
-            </div>
-            <label for="id_image" class="btn btn-secondary">Télécharger fichier</label>
-            {{ form.image }}
-        </div>
-
-        <button type="submit" class="btn btn-primary">{{ submit_text }}</button>  
-
-    <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Annuler</a>
+<div class="form-group">
+    {{ ticket_form.image.label_tag }}
+    <div id="image-preview-container" style="margin-top: 10px;">
+        {% if ticket.image %}
+            <img id="image-preview" src="{{ ticket.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
+        {% else %}
+            <img id="image-preview" style="display: none; max-width: 300px; height: auto;">
+        {% endif %}
+    </div>
+    <label for="id_image" class="btn btn-secondary">Télécharger fichier</label>
+    {{ ticket_form.image }}
 </div>
 
 <!-- Petit script JS pour afficher l'image choisi-->
@@ -60,4 +46,3 @@
         });
     });
 </script>
-{% endblock %}
