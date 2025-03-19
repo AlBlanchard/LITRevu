@@ -5,14 +5,20 @@ from django.db import models
 
 class UserFollow(models.Model):
     user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following"
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="following",  # Accès rapide aux abonnements
     )
     followed_user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="followers"
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="followers",  # Accès rapide aux abonnés
     )
 
+    objects = models.Manager()
+
     class Meta:
-        unique_together = ("user", "followed_user")
+        unique_together = ("user", "followed_user")  # Ne permet pas les doublons
 
     def clean(self):
         if self.user == self.followed_user:

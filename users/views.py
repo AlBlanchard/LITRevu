@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
-from django.contrib import messages
-from .forms import UserRegisterForm
-from .forms import LoginForm
 from datetime import datetime
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib import messages
+from .forms import UserRegisterForm, LoginForm, FollowUserForm
+from .models import UserFollow
+
+User = get_user_model()
 
 
 def global_variables(request):
@@ -68,3 +70,67 @@ def login_view(request):
 
     form = LoginForm()
     return render(request, "users/login.html", {"form": form})
+
+
+def subscribe(request):
+    form = FollowUserForm()
+    followed_users = request.user.following.all()
+    followers = request.user.followers.all()
+
+    if request.method == "POST":
+        form = FollowUserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            followed_user = get_object_or_404(User, username=username)
+
+            if followed_user == request.user:
+                messages.error(request, "Vous ne pouvez pas vous suivre vous-même !")
+            elif UserFollow.objects.filter(
+                user=request.user, followed_user=followed_user
+            ).exists():
+                messages.error(request, "Vous suivez déjà cet utilisateur.")
+            else:
+                UserFollow.objects.create(
+                    user=request.user, followed_user=followed_user
+                )
+                messages.success(
+                    request, f"Vous suivez maintenant {followed_user.username}."
+                )
+
+            return redirect("subscriptions")
+
+    return render(
+        request,
+        "users/subscriptions.html",
+        {
+            "form": form,
+            "followed_users": followed_users,
+            "followers": followers,
+        },
+    )
+
+
+def unfollow_user(request, followed_user_id):
+    followed_user = get_object_or_404(User, id=followed_user_id)
+    subscription = UserFollow.objects.filter(
+        user=request.user, followed_user=followed_user
+    )
+
+    if subscription.exists():
+        subscription.delete()
+        messages.success(request, f"Vous ne suivez plus {followed_user.username}.")
+    else:
+        messages.error(request, "Vous ne suivez pas cet utilisateur.")
+
+    return redirect("subscriptions")
+
+
+def list_of_follow(request):
+    followed_users = request.user.following.all()
+    followers = request.user.followers.all()
+
+    return render(
+        request,
+        "users/subscriptions.html",
+        {"followed_users": followed_users, "followers": followers},
+    )

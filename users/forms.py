@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class UserRegisterForm(UserCreationForm):
@@ -54,3 +56,19 @@ class LoginForm(AuthenticationForm):
         ),
         required=True,
     )
+
+
+class FollowUserForm(forms.Form):
+    username = forms.CharField(
+        label="Nom d'utilisateur",
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nom d'utilisateur"}
+        ),
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        if not User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Cet utilisateur n'existe pas.")
+        return username
