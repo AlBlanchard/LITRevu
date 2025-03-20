@@ -24,9 +24,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", home, name="home"),  # Ajoute cette ligne pour définir la route "home"
     path("users/", include("users.urls")),
     path("tickets/", include("tickets.urls")),
+    path("", include("flux.urls")),
 ]
 
 if settings.DEBUG:  # Servir les fichiers médias seulement en mode dev

@@ -55,5 +55,7 @@ class Review(models.Model):
     review = models.TextField(blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    objects = models.Manager()
+
     def __str__(self):
         return f"Critique de {self.ticket} par {self.user}"
