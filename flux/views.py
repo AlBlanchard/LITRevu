@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from itertools import chain
+from django.shortcuts import render
 from django.db.models import CharField, Value
 from tickets.models import Ticket, Review
 
@@ -21,7 +21,14 @@ def flux(request):
         chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
     )
 
-    return render(request, "flux/flux.html", {"posts": posts})
+    return render(
+        request, "flux/flux.html", {"posts": posts, "is_personal_view": False}
+    )
+
+
+# Si une personne B fait un review sur ticket de A et qu'une personne C est abboné à B, la personne A verra t elle les reviews de B sur ses tickets ?
+# Si la personne B suit la A mais pas l'inverse, la personne A verra t elle les reviews de B ?
+# Filtre : porter sur tous les reviews sur les tickets qui m'appartiennent
 
 
 def self_posts(request):
@@ -53,4 +60,11 @@ def self_posts(request):
         reverse=True,
     )
 
-    return render(request, "flux/self_posts.html", {"posts": posts})
+    return render(
+        request,
+        "flux/flux.html",
+        {
+            "posts": posts,
+            "is_personal_view": True,
+        },
+    )

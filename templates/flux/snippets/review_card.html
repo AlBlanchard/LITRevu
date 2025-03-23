@@ -1,0 +1,41 @@
+{% load filters %}
+
+<article class="review-card">
+    <div class="review-card__review-container">
+        <div class="review-card__header">
+            {% if post.user == request.user %}
+                <p class="posted-user">Vous avez posté une critique</p>
+            {% else %}
+                <p class="posted-user">{{ post.user }}</strong> a posté une critique</p>
+            {% endif %}
+                <p class="posted-time">{{ post.time_created|date:"d/m/Y H:i" }}</p>
+        </div>
+
+        <div class="review-card__title-container">
+            <h3 class="card-title">{{ post.review_title }}</h3>
+            <span>-</span>
+            <div class="card-rating">{{ post.rating|full_stars }}{{ post.rating|empty_stars }}</div>
+        </div>
+
+        <p class="card-text">{{ post.review }}</p>
+    </div>
+
+    <div class="review-card__ticket-container">
+        {% if post.user == request.user %}
+            <p class="review-card__ticket-posted-by">Ticket - Vous</p>
+        {% else %}
+            <p class="review-card__ticket-posted-by">Ticket - {{ post.user }}</p>
+        {% endif %}
+
+        <h4 class="review-card__ticket-title">{{post.ticket.book_title}}</h4>
+
+        {% if post.ticket.image %}
+            <img src="{{ post.ticket.image.url }}" class="img-fluid" alt="Image du ticket">
+        {% endif %}
+    </div>
+
+    {% if is_personal_view %}
+        <a href="{% url 'ticket_update' post.id %}" class="review-card__ticket-modify create-buttons">Modifier</a>
+        <a href="{% url 'ticket_delete' post.id %}" class="review-card__ticket-delete create-buttons">Supprimer</a>
+    {% endif %}
+</article>

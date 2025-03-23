@@ -1,24 +1,35 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/login.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Connexion</h2>
+<section class="login-section">
+    <section class="login-section__login-part">
+        <h2>Connectez-vous</h2>
 
-<!-- Messages de succès et d'erreur -->
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+        <!-- Messages de succès et d'erreur -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-<!-- Formulaire -->
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}  
-    <button type="submit">Se connecter</button>
-</form>
+        <!-- Formulaire -->
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  
+            <button class="btn btn-primary" type="submit">Se connecter</button>
+        </form>
+    </section>
 
-<p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+    <section class="login-section__register-part">
+        <p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+    </section>
+</section>
 {% endblock %}
 

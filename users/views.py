@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
 from .forms import UserRegisterForm, LoginForm, FollowUserForm
 from .models import UserFollow
+from django.views.decorators.cache import never_cache
 
 User = get_user_model()
 
@@ -12,7 +13,11 @@ def global_variables(request):
     return {"timestamp": datetime.now().timestamp()}
 
 
+@never_cache
 def register(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
 
@@ -51,7 +56,11 @@ def logout_view(request):
     return redirect("login")
 
 
+@never_cache
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
     form = LoginForm(request, data=request.POST)
 
     if request.method == "POST":

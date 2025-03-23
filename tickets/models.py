@@ -6,18 +6,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Ticket(models.Model):
     user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tickets"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tickets"
     )
     book_title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="tickets_images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
-
-    objects = models.Manager()  # Permet d'ajouter l'attriubut objects pour le cleanup
-
-    reviews: models.Manager[
-        "Review"
-    ]  # Correction de type pour le manager, sinon property ne fonctionne pas
 
     @property
     def has_review(self):
@@ -40,9 +34,7 @@ class Ticket(models.Model):
 
 
 class Review(models.Model):
-    ticket = models.ForeignKey(
-        to=Ticket, on_delete=models.CASCADE, related_name="reviews"
-    )
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name="reviews")
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -54,8 +46,6 @@ class Review(models.Model):
     review_title = models.CharField(max_length=120)
     review = models.TextField(blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
-
-    objects = models.Manager()
 
     def __str__(self):
         return f"Critique de {self.ticket} par {self.user}"

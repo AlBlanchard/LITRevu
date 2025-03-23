@@ -1,77 +1,26 @@
 {% extends "base.html" %}
-{% load filters %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/flux/flux.css' %}">
+{% endblock %}
 
 
 {% block content %}
-<div class="container">
-    <h2>Flux d'activités</h2>
+<section class="flux-section">
+    <h2 class="flux-section__title">Flux d'activités</h2>
 
-    <div class="mb-3">
-        <a href="{% url 'ticket_create' %}" class="btn btn-primary">Créer un ticket</a>
-        <a href="{% url 'ticket_and_review_create' %}" class="btn btn-secondary">Créer un ticket et une critique</a>
+    <div class="flux-session__create-buttons-container">
+        <a href="{% url 'ticket_create' %}" class="create-buttons">Créer un ticket</a>
+        <a href="{% url 'ticket_and_review_create' %}" class="create-buttons">Créer un ticket et une critique</a>
     </div>
 
     {% for post in posts %}
         {% if post.content_type == "TICKET" %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="card__header">
-                        {% if post.user == request.user %}
-                            <p class="posted-user">Vous avez demandé une critique</p>
-                        {% else %}
-                            <p class="posted-user">{{ post.user.username }}</strong> a demandé une critique</p>
-                        {% endif %}
-                            <p class="posted-time">{{ post.time_created|date:"d/m/Y H:i" }}</p>
-                    </div>
-
-                    <h3 class="card-title">{{ post.book_title }}</h4>
-                    <p class="card-text">{{ post.description }}</p>
-
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" class="img-fluid" alt="Image du ticket">
-                    {% endif %}
-
-                    {% if not post.reviews.exists %}
-                        <a href="{% url 'review_create' post.id %}" class="btn btn-success">Créer une critique</a>
-                    {% endif %}
-                </div>
-            </div>
+            {% include "flux/snippets/ticket_card.html" %}
         {% elif post.content_type == "REVIEW" %}
-            <div class="card mb-3">
-                <div class="card-review">
-                    <div class="card-review__header">
-                        {% if post.user == request.user %}
-                            <p class="posted-user">Vous avez posté une critique</p>
-                        {% else %}
-                            <p class="posted-user">{{ post.user.user }}</strong> a posté une critique</p>
-                        {% endif %}
-                            <p class="posted-time">{{ post.time_created|date:"d/m/Y H:i" }}</p>
-                    </div>
-
-                    <div class="card__title-container">
-                        <h3 class="card-title">{{ post.review_title }}</h3>
-                        <span>-</span>
-                        <div class="card-rating">{{ post.rating|full_stars }}{{ post.rating|empty_stars }}</div>
-                    </div>
-
-                    <p class="card-text">{{ post.review }}</p>
-                </div>
-
-                <div class="card-ticket">
-                    {% if post.user == request.user %}
-                        <p class="card-ticket__posted-by">Ticket - Créé par vous-même</p>
-                    {% else %}
-                        <p class="card-ticket__posted-by">Ticket - {{ post.user.username }}</p>
-                    {% endif %}
-
-                    <h4 class="card-ticket__title">{{post.ticket.book_title}}</h4>
-
-                    {% if post.ticket.image %}
-                        <img src="{{ post.ticket.image.url }}" class="img-fluid" alt="Image du ticket">
-                    {% endif %}
-                </div>
-            </div>
+            {% include "flux/snippets/review_card.html" %}
         {% endif %}
     {% endfor %}
-</div>
+</section>
 {% endblock %}
