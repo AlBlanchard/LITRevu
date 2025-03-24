@@ -1,0 +1,24 @@
+:root {
+    --bg-main: #1b1410;
+    --bg-card: #201e2b;
+    --bg-alt: #13121a;
+    --bg-book: #1a0100;
+
+    
+    --text-main: #e0dcc5;
+    --text-muted: #a8a28d;
+  
+    --title-color: #ffcc00;
+    --accent: #8c3d2b;
+    --link: #235C90;
+    
+    --green: #4caf50;
+    --red: #e53935;
+    --border-color: #c49a6c;
+
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-text: 'Merriweather', serif;
+
+    --texture-parchment: url("https://www.transparenttextures.com/patterns/old-wall.png");
+    --texture-leather: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+}
