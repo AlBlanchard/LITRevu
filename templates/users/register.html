@@ -1,59 +1,63 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/register.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Inscription</h2>
+<section class="register-section">
+    <h2>Inscrivez-vous</h2>
 
-<!-- Affichage des messages (succès ou erreurs) -->
-{% if messages %}
-    <div class="messages">
-        <p>Veuillez corriger les erreurs suivantes :</p>
-        <ul class="messages_list">
-            {% for message in messages %}
-                <li class="{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
+    <!-- Messages de succès et d'erreur -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
+    <!-- Formulaire -->
+    <form class="register-section__form" method="post">
+        {% csrf_token %}
+        
+        <div>
+            <label for="{{ form.username.id_for_label }}">Nom d'utilisateur :</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <p class="error">{{ form.username.errors.0 }}</p>
+            {% endif %}
+        </div>
 
-<!-- Formulaire -->
-<form method="post">
-    {% csrf_token %}
-    
-    <div>
-        <label for="{{ form.username.id_for_label }}">Nom d'utilisateur :</label>
-        {{ form.username }}
-        {% if form.username.errors %}
-            <p class="error">{{ form.username.errors.0 }}</p>
-        {% endif %}
-    </div>
+        <div>
+            <label for="{{ form.password1.id_for_label }}">Mot de passe :</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <ul class="error">
+                    {% for error in form.password1.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
-    <div>
-        <label for="{{ form.password1.id_for_label }}">Mot de passe :</label>
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-            <ul class="error">
-                {% for error in form.password1.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
+        <div>
+            <label for="{{ form.password2.id_for_label }}">Confirmez le mot de passe :</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <ul class="error">
+                    {% for error in form.password2.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
-    <div>
-        <label for="{{ form.password2.id_for_label }}">Confirmez le mot de passe :</label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-            <ul class="error">
-                {% for error in form.password2.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-
-    <button type="submit">S'inscrire</button>
-</form>
-
-<p>Déjà un compte ? <a href="{% url 'login' %}">Connexion</a></p>
+        <div class="register-section__buttons-wrapper">
+            <a class="btn btn-secondary" href="{% url 'login' %}">Retourner</a>
+            <button class="btn btn-primary" type="submit">S'inscrire</button>
+        </div>
+    </form>
+</section>
 {% endblock %}

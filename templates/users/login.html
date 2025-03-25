@@ -12,11 +12,11 @@
 
         <!-- Messages de succès et d'erreur -->
         {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{{ message.tags }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
         {% endif %}
 
         <!-- Formulaire -->
@@ -28,7 +28,23 @@
     </section>
 
     <section class="login-section__register-part">
-        <p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+        <div class="book-style">
+            <div class="book-style__leather-line"></div>
+            <p>Inscrivez-vous maintenant</p>
+            <div class="book-style__leather-line"></div>
+        </div>
+
+        <div class="book-style">
+            <div class="book-style__leather-line"></div>
+            <a class="btn btn-secondary" href="{% url 'register' %}">S'inscrire</a>
+            <div class="book-style__leather-line"></div>
+        </div>
+
+        <div class="book-style">
+            <div class="book-style__leather-line"></div>
+            <p class="book-style__placeholder"></p>
+            <div class="book-style__leather-line"></div>
+        </div>
     </section>
 </section>
 {% endblock %}

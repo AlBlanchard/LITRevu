@@ -4,13 +4,16 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background: var(--bg-main);
     color: var(--text-main);
     font-family: var(--font-text);
     font-size: 16px;
     line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* ======= TYPOGRAPHIE ======= */
@@ -27,18 +30,14 @@ a {
     transition: color 0.3s ease;
 }
 
-a:hover {
-    color: var(--accent);
-    text-decoration: underline;
-}
-
 /* ======= HEADER ======= */
 .header {
     display: flex;
     background-color: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
     padding: 1rem;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -107,8 +106,15 @@ a:hover {
 /* ======= MAIN ======= */
 .main {
     padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+    margin-top: 120px;
+    width: 100%;
+}
+
+.main__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 /* ======= FOOTER ======= */
@@ -119,6 +125,7 @@ a:hover {
     padding: 2rem 1rem;
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
+    width: 100%;
 }
 
 /* ======= BOUTONS ======= */
@@ -134,11 +141,24 @@ a:hover {
 
 .btn-primary {
     background-color: var(--link);
-    color: #fff;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: var(--link-2);
+    color: var(--text-main);
+    text-decoration: none;
 }
 
 .btn-primary:hover {
     background-color: #4a9ee6;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent);
+    text-decoration: none;
 }
 
 .btn-success {
