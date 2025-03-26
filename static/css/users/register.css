@@ -9,6 +9,8 @@
     max-width: 580px;
     align-items: center;
     gap: 1rem;
+    margin-top: 64px;
+    margin-bottom: 64px;
 }
 
 .register-section h2 {
@@ -25,7 +27,7 @@
     gap: 1rem;
 }
 
-.register-section__form input{
+.register-section__form input {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -36,16 +38,23 @@
     transition: border 0.4s ease;
 }
 
-.register-section__form input:focus{
+.register-section__form input:focus {
     border-color: var(--accent);
     outline: none;
 }
 
-.register-section__buttons-wrapper{
+.register-section__buttons-wrapper {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
     width: 100%;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.register-section__buttons-wrapper button {
+    height: 50px;
+    width: 124px;
 }
 
 

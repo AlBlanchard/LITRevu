@@ -1,0 +1,32 @@
+.column {
+    width: 64px;
+    background-color: var(--bg-alt);
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    background-repeat: repeat;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    box-shadow: inset 0 0 10px rgba(255, 204, 0, 0.05);
+    position: relative;
+}
+  
+  .column__decoration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+
+    .column {
+        flex-shrink: 0;
+        width: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

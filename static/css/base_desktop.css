@@ -1,0 +1,15 @@
+@media (min-width: 1024px) {
+    .main {
+        align-items: stretch;
+        padding: 120px 2rem 0 2rem;
+        width: 100%;
+    }
+
+    .column {
+        flex-shrink: 0;
+        width: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

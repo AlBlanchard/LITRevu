@@ -1,0 +1,133 @@
+.gyroscope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.gyroscope {
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+
+.gyroscope-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 58px;
+    height: 58px;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+  
+.gyroscope-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+  
+/* Anneaux */
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid var(--title-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+  
+.ring--outer {
+    width: 180px;
+    height: 180px;
+    animation: rotate-slow 20s infinite linear;
+}
+  
+.ring--middle {
+    width: 120px;
+    height: 120px;
+    animation: rotate-medium 12s infinite reverse linear;
+}
+  
+.ring--inner {
+    width: 60px;
+    height: 60px;
+    animation: rotate-fast 6s infinite linear;
+}
+  
+/* Marqueurs */
+.marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 30px;
+    background-color: var(--accent);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 3px rgba(255, 204, 0, 0.4);
+}
+  
+.marker--outer {
+    background-color: #ffcc00;
+}
+  
+.marker--middle {
+    background-color: #c49a6c;
+}
+  
+.marker--inner {
+    background-color: #b2893d;
+}
+  
+/* Centre */
+.core {
+    width: 15px;
+    height: 15px;
+    background-color: var(--title-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+}
+  
+/* Socle */
+.gyroscope-stand-top {
+    width: 40px;
+    height: 20px;
+    background: linear-gradient(to bottom, #5e3c2b, #3e2a1d);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    margin-top: -10px;
+}
+
+.gyroscope-stand-bot {
+    width: 128px;
+    height: 20px;
+    background: linear-gradient(to bottom, #5e3c2b, #3e2a1d);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+  
+@keyframes rotate-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+  
+@keyframes rotate-medium {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+  
+@keyframes rotate-fast {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+  

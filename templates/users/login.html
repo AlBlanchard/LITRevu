@@ -3,6 +3,7 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/users/login.css' %}">
+  <link rel="stylesheet" href="{% static 'css/users/login_desktop.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -28,22 +29,27 @@
     </section>
 
     <section class="login-section__register-part">
-        <div class="book-style">
-            <div class="book-style__leather-line"></div>
-            <p>Inscrivez-vous maintenant</p>
-            <div class="book-style__leather-line"></div>
-        </div>
+        <div class="shelf">
+            {% include "components/candle.html" %}
+            <div class="books-pile">
+                <div class="book-style">
+                    <div class="book-style__leather-line"></div>
+                    <p>Inscrivez-vous maintenant</p>
+                    <div class="book-style__leather-line"></div>
+                </div>
 
-        <div class="book-style">
-            <div class="book-style__leather-line"></div>
-            <a class="btn btn-secondary" href="{% url 'register' %}">S'inscrire</a>
-            <div class="book-style__leather-line"></div>
-        </div>
+                <div class="book-style">
+                    <div class="book-style__leather-line"></div>
+                    <a class="btn btn-secondary" href="{% url 'register' %}">S'inscrire</a>
+                    <div class="book-style__leather-line"></div>
+                </div>
 
-        <div class="book-style">
-            <div class="book-style__leather-line"></div>
-            <p class="book-style__placeholder"></p>
-            <div class="book-style__leather-line"></div>
+                <div class="book-style">
+                    <div class="book-style__leather-line"></div>
+                    <p class="book-style__placeholder"></p>
+                    <div class="book-style__leather-line"></div>
+                </div>
+            </div>
         </div>
     </section>
 </section>

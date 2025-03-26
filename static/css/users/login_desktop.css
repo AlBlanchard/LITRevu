@@ -1,0 +1,26 @@
+@media (min-width: 1024px) {
+    .login-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: none;
+        padding: 2rem;
+        margin-bottom: 64px;
+    }
+
+    .login-section__login-part {
+        max-width: 800px;
+        order: 2;
+    }
+
+    .login-section__register-part{
+        width: 80%;
+        max-width: 600px;
+        order: 1;
+    }
+
+    .login-form .btn {
+        align-self: flex-end;
+    }
+}

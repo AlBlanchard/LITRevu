@@ -11,12 +11,11 @@ body {
     line-height: 1.7;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     justify-content: space-between;
     align-items: center;
 }
 
-/* ======= TYPOGRAPHIE ======= */
+/* ===== TYPO ====== */
 h1, h2, h3, h4 {
     font-family: var(--font-serif);
     color: var(--title-color);
@@ -30,94 +29,34 @@ a {
     transition: color 0.3s ease;
 }
 
-/* ======= HEADER ======= */
-.header {
-    display: flex;
-    background-color: var(--bg-card);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.header__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.header__logo {
-    height: 40px;
-}
-
-.header__title {
-    align-self: center;
-    font-size: 2rem;
-    font-family: var(--font-serif);
-    color: var(--title-color);
-}
-
-/* ======= NAVBAR ======= */
-.nav {
-    position: relative;
-}
-
-.nav__toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-main);
-    cursor: pointer;
-    display: block;
-}
-
-.nav__menu {
-    display: none;
-    flex-direction: column;
-    background-color: var(--bg-alt);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    position: absolute;
-    right: 0;
-    top: 2.5rem;
-    padding: 1rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-}
-
-.nav__menu a {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--text-main);
-    padding: 0.5rem 0;
-}
-
-.nav:hover .nav__menu {
-    display: flex;
-}
-
-/* ======= MAIN ======= */
+/* ====== MAIN ===== */
 .main {
-    padding: 2rem;
-    margin-top: 120px;
+    display: flex;
+    padding: 120px 2rem 0 2rem;
     width: 100%;
+    min-height: calc(100vh - 120px);
 }
 
 .main__content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
+    flex-grow: 1;
 }
 
-/* ======= FOOTER ======= */
+/* ===== DECO ===== */
+
+.deco-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items:last baseline;
+    justify-content: space-evenly;
+}
+
+/* ====== FOOTER ====== */
 .footer {
     background-color: var(--bg-card);
     color: var(--text-muted);
@@ -126,9 +65,10 @@ a {
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
     width: 100%;
+    height: 120px;
 }
 
-/* ======= BOUTONS ======= */
+/* ====== BOUTONS ====== */
 .btn {
     display: inline-block;
     padding: 0.7rem 1.4rem;
@@ -171,7 +111,7 @@ a {
     color: white;
 }
 
-/* ======= FORMULAIRES ======= */
+/* ==== FORMULAIRES ==== */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -183,7 +123,6 @@ select {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     color: var(--text-main);
-    margin-bottom: 1rem;
     font-family: var(--font-text);
     text-align: center;
 }
@@ -197,17 +136,7 @@ label {
     display: none;
 }
 
-/* ======= CARTES ======= */
-.card {
-    background-color: var(--bg-card);
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.05);
-}
-
-/* ======= ALERTES ======= */
+/* ==== ALERTES ==== */
 .alert {
     padding: 1rem;
     margin-bottom: 1rem;
@@ -225,29 +154,9 @@ label {
     color: white;
 }
 
-/* ======= UTILITAIRES ======= */
+/* === UTILITAIRES === */
 .text-muted {
     color: var(--text-muted);
 }
-
-/* ======= RESPONSIVE ======= */
-@media (min-width: 768px) {
-    .nav__menu {
-        display: flex;
-        position: static;
-        flex-direction: row;
-        background: none;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-    }
-
-    .nav__menu a {
-        padding: 0 1rem;
-    }
-
-    .nav__toggle {
-        display: none;
-    }
-}
+  
   

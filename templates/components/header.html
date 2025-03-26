@@ -1,0 +1,15 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+{% endblock %}
+
+<header class="header">
+    <div class="header__content">
+        <h1 class="header__title">LITRevu</h1>
+
+        {% if user.is_authenticated %}
+            {% include "components/navbar.html" %}
+        {% endif %}
+    </div>
+</header>

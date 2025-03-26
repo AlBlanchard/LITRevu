@@ -9,34 +9,26 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}?v={{ timestamp }}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/variables.css' %}?v={{ timestamp }}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}?v={{ timestamp }}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base_desktop.css' %}?v={{ timestamp }}">
         {% block extra_css %}{% endblock %}
     </head>
 
     <body class="theme-dark">
-        <header class="header">
-            <div class="header__content">
-                <h1 class="header__title">LITRevu</h1>
-
-                {% if user.is_authenticated %}
-                <nav class="nav">
-                <button class="nav__toggle" aria-label="Ouvrir la navigation">
-                    ☰
-                </button>
-                <ul class="nav__menu">
-                    <li><a href="{% url 'home' %}">Flux</a></li>
-                    <li><a href="{% url 'self_posts' %}">Posts</a></li>
-                    <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
-                    <li><a href="{% url 'logout' %}">Déconnexion</a></li>
-                </ul>
-                </nav>
-                {% endif %}
-            </div>
-        </header>
+        {% include "components/header.html" %}
 
         <main class="main">
-        <section class="main__content">
-            {% block content %}{% endblock %}
-        </section>
+            {% include "components/column.html" %}
+
+            <section class="main__content">
+                {% block content %}{% endblock %}
+
+                <section class="deco-section">
+                    {% include "components/gyroscope.html" %}
+                    {% include "components/candle.html" %}
+                </section>
+            </section>
+
+            {% include "components/column.html" %}
         </main>
 
         <footer class="footer">

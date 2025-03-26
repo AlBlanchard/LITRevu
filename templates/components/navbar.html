@@ -1,0 +1,18 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/components/navbar.css' %}">
+{% endblock %}
+
+<nav class="nav">
+    <button class="nav__toggle" aria-label="Ouvrir la navigation">
+        ☰
+    </button>
+    
+    <ul class="nav__menu">
+        <li><a href="{% url 'home' %}">Flux</a></li>
+        <li><a href="{% url 'self_posts' %}">Posts</a></li>
+        <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
+        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+    </ul>
+</nav>

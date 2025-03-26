@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/components/gyroscope.css' %}">
+{% endblock %}
+
+<div class="gyroscope-container">
+    <div class="gyroscope">
+      <div class="ring ring--outer">
+        <div class="marker marker--outer"></div>
+        <div class="ring ring--middle">
+          <div class="marker marker--middle"></div>
+          <div class="ring ring--inner">
+            <div class="marker marker--inner"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Logo immobile au centre -->
+      <div class="gyroscope-logo">
+        <img src="{% static 'assets/litrevu_logo-gold.png' %}" alt="Logo" />
+      </div>
+    </div>
+    <div class="gyroscope-stand-top"></div>
+    <div class="gyroscope-stand-bot"></div>
+</div>
