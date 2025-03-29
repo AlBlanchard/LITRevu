@@ -1,0 +1,39 @@
+.followed-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.followed-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-card);
+    overflow: hidden;
+}
+
+.followed-list > * {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--border-color);
+    padding-left: 1rem;
+    height: 50px;
+}
+
+.followed-list :first-child {
+    border-top: none;
+}
+
+.followed-item .btn {
+    border-radius: 0;
+}

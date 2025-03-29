@@ -6,10 +6,15 @@
 
 <header class="header">
     <div class="header__content">
+        <div class="header__flex"></div>
+
         <h1 class="header__title">LITRevu</h1>
 
         {% if user.is_authenticated %}
             {% include "components/navbar.html" %}
+
+        {% else %}
+            <div class="header__flex"></div>
         {% endif %}
     </div>
 </header>

@@ -1,11 +1,16 @@
 .nav {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav__toggle {
+    width: 100%;
+    height: 100%;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--text-main);
     cursor: pointer;
     display: block;
@@ -14,7 +19,7 @@
 .nav__menu {
     display: none;
     flex-direction: column;
-    background-color: var(--bg-alt);
+    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     position: absolute;
@@ -25,9 +30,14 @@
     z-index: 100;
 }
 
+.nav__menu li {
+    list-style: none;
+    margin: 0.5rem 0;
+}
+
 .nav__menu a {
     font-family: var(--font-serif);
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--text-main);
     padding: 0.5rem 0;
 }
@@ -45,10 +55,21 @@
         border: none;
         box-shadow: none;
         padding: 0;
+        margin: 0;
+    }
+
+    .nav__menu li {
+        margin: 0;
     }
 
     .nav__menu a {
         padding: 0 1rem;
+        font-size: 1.2rem;
+    }
+
+    .nav__menu a:hover {
+        color: var(--title-color);
+        text-decoration: underline;
     }
 
     .nav__toggle {

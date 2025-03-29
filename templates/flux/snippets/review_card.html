@@ -43,7 +43,9 @@
     </div>
 
     {% if is_personal_view %}
-        <a href="{% url 'review_update' post.id %}" class="review-card__ticket-modify create-buttons">Modifier</a>
-        <a href="{% url 'review_delete' post.id %}" class="review-card__ticket-delete create-buttons">Supprimer</a>
+    <div class="modify-buttons-container">
+        <a href="{% url 'review_update' post.id %}" class="review-card__ticket-modify btn btn-primary">Modifier</a>
+        <a href="{% url 'review_delete' post.id %}" class="review-card__ticket-delete btn btn-danger">Supprimer</a>
+    </div>
     {% endif %}
 </article>

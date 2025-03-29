@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/snippets/subscribe.css' %}">
+{% endblock %}
+
+<section class="subscribe-section">
+    <h2>Suivre d'autres utilisateurs</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+</section>

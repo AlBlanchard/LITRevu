@@ -1,36 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/subscriptions.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Gérer mes abonnements</h2>
-
-    <h3>Suivre un utilisateur</h3>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }} 
-        <button type="submit" class="btn btn-primary">Suivre</button>
-    </form>
-
-    <h3>Utilisateurs suivis</h3>
-    <ul>
-        {% for user_follow in followed_users %}
-            <li>
-                {{ user_follow.followed_user.username }}
-                <a href="{% url 'unfollow_user' user_follow.followed_user.id %}" class="btn btn-danger btn-sm">Désabonner</a>
-            </li>
-        {% empty %}
-            <p>Vous ne suivez encore personne.</p>
-        {% endfor %}
-    </ul>
-
-    <h3>Mes abonnés</h3>
-    <ul>
-        {% for user_follow in followers %}
-            <li>{{ user_follow.user.username }}</li>
-        {% empty %}
-            <p>Vous n'avez pas encore d'abonnés.</p>
-        {% endfor %}
-    </ul>
-</div>
+<section class="subscriptions-section">
+    {% include "users/snippets/subscribe.html" %}
+    {% include "users/snippets/followed.html" %}
+    {% include "users/snippets/followers.html" %}
+</section>
 {% endblock %}

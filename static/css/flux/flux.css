@@ -1,12 +1,17 @@
 .flux-section {
     width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    margin-top: 32px;
+    margin-top: 24px;
     margin-bottom: 64px;
+}
+
+.flux-section__title {
+    font-size: 2rem;
 }
 
 .flux-session__buttons-container {
@@ -48,9 +53,17 @@
     font-weight: 600;
 }
 
+.modify-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
 @media (min-width: 1024px) {
     .flux-section {
         width: 70%;
+        margin-top: 32px;
     }
 
     .flux-session__buttons-container .btn {
@@ -63,5 +76,9 @@
 
     .card-header {
         flex-direction: row;
+    }
+
+    .modify-buttons-container {
+        width: 97%;
     }
 }

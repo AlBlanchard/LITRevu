@@ -36,9 +36,9 @@ p {
 /* ====== MAIN ===== */
 .main {
     display: flex;
-    padding: 120px 2rem 0 2rem;
+    padding: 80px 2rem 0 2rem;
     width: 100%;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 80px);
 }
 
 .main__content {
@@ -111,8 +111,12 @@ p {
 }
 
 .btn-danger {
-    background-color: var(--red);
+    background-color: var(--red2);
     color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--red);
 }
 
 /* ==== FORMULAIRES ==== */
@@ -140,4 +144,18 @@ label {
     display: none;
 }
   
-  
+@media (min-width: 1024px) {
+    .main {
+        align-items: stretch;
+        padding: 80px 2rem 0 2rem;
+        width: 100%;
+    }
+
+    .column {
+        flex-shrink: 0;
+        width: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/users/snippets/followers.css' %}">
+{% endblock %}
+
+<section class="followers-section">
+    <h2>Abonnés</h2>
+    <ul class="followers-list">
+        {% for user_follow in followers %}
+            <li class="followers-item">{{ user_follow.user.username }}</li>
+        {% empty %}
+            <p>Vous n'avez pas encore d'abonnés.</p>
+        {% endfor %}
+    </ul>
+</section>

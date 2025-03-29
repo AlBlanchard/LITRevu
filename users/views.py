@@ -107,6 +107,11 @@ def subscribe(request):
 
             return redirect("subscriptions")
 
+        for field_errors in form.errors.values():
+            for error in field_errors:
+                messages.error(request, error)
+        return redirect("subscriptions")
+
     return render(
         request,
         "users/subscriptions.html",

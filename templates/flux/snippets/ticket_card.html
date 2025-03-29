@@ -15,7 +15,7 @@
             <p class="posted-time">{{ post.time_created|date:"H:i, j F Y" }}</p>
     </div>
 
-    <h3 class="ticket-card__title card-title">{{ post.book_title }}</h4>
+    <h3 class="ticket-card__title card-title">{{ post.book_title }}</h3>
     <p class="ticket-card__description">{{ post.description }}</p>
 
     {% if post.image %}
@@ -29,7 +29,9 @@
     {% endif %}
 
     {% if is_personal_view %}
+    <div class="modify-buttons-container">
         <a href="{% url 'ticket_update' post.id %}" class="ticket-card__modify btn btn-primary">Modifier</a>
-        <a href="{% url 'ticket_delete' post.id %}" class="ticket-card__delete btn btn-secondary">Supprimer</a>
+        <a href="{% url 'ticket_delete' post.id %}" class="ticket-card__delete btn btn-danger">Supprimer</a>
+    </div>
     {% endif %}
 </article>
