@@ -1,14 +1,20 @@
 {% load filters %}
+{% load static %}
 
-<article class="review-card">
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/flux/snippets/review_card.css' %}">
+{% endblock %}
+
+
+<article class="review-card card">
     <div class="review-card__review-container">
-        <div class="review-card__header">
+        <div class="review-card__header card-header">
             {% if post.user == request.user %}
                 <p class="posted-user">Vous avez posté une critique</p>
             {% else %}
                 <p class="posted-user">{{ post.user }}</strong> a posté une critique</p>
             {% endif %}
-                <p class="posted-time">{{ post.time_created|date:"d/m/Y H:i" }}</p>
+                <p class="posted-time">{{ post.time_created|date:"H:i, j F Y" }}</p>
         </div>
 
         <div class="review-card__title-container">
@@ -30,12 +36,14 @@
         <h4 class="review-card__ticket-title">{{post.ticket.book_title}}</h4>
 
         {% if post.ticket.image %}
+        <div class="review-card__img-container">
             <img src="{{ post.ticket.image.url }}" class="img-fluid" alt="Image du ticket">
+        </div>
         {% endif %}
     </div>
 
     {% if is_personal_view %}
-        <a href="{% url 'ticket_update' post.id %}" class="review-card__ticket-modify create-buttons">Modifier</a>
-        <a href="{% url 'ticket_delete' post.id %}" class="review-card__ticket-delete create-buttons">Supprimer</a>
+        <a href="{% url 'review_update' post.id %}" class="review-card__ticket-modify create-buttons">Modifier</a>
+        <a href="{% url 'review_delete' post.id %}" class="review-card__ticket-delete create-buttons">Supprimer</a>
     {% endif %}
 </article>

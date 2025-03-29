@@ -13,6 +13,24 @@
         {% block extra_css %}{% endblock %}
     </head>
 
+    <script>
+        // Disparition automatique des messages d'erreur
+        document.addEventListener("DOMContentLoaded", function () {
+            const messages = document.querySelectorAll(".messages li");
+    
+            messages.forEach((message) => {
+                
+                setTimeout(() => {
+                    message.style.opacity = "0";
+    
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 3000); 
+            });
+        });
+    </script>
+
     <body class="theme-dark">
         {% include "components/header.html" %}
 
@@ -20,6 +38,7 @@
             {% include "components/column.html" %}
 
             <section class="main__content">
+                {% include "components/messages.html" %}
                 {% block content %}{% endblock %}
 
                 <section class="deco-section">

@@ -29,6 +29,10 @@ a {
     transition: color 0.3s ease;
 }
 
+p {
+    margin: 0;
+}
+
 /* ====== MAIN ===== */
 .main {
     display: flex;
@@ -134,29 +138,6 @@ input[type="file"] {
 
 label {
     display: none;
-}
-
-/* ==== ALERTES ==== */
-.alert {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 6px;
-    font-weight: bold;
-}
-
-.alert-success {
-    background-color: var(--green);
-    color: white;
-}
-
-.alert-danger {
-    background-color: var(--red);
-    color: white;
-}
-
-/* === UTILITAIRES === */
-.text-muted {
-    color: var(--text-muted);
 }
   
   

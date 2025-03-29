@@ -11,15 +11,6 @@
     <section class="login-section__login-part">
         <h2>Connectez-vous</h2>
 
-        <!-- Messages de succès et d'erreur -->
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li class="{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-
         <!-- Formulaire -->
         <form class="login-form" method="post">
             {% csrf_token %}

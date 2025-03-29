@@ -58,30 +58,6 @@
     margin-top: 64px;
 }
 
-.messages {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 1rem;
-    width: 100%;
-}
-
-.messages li {
-    padding: 0.8rem 1rem;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
-.messages .success {
-    background-color: var(--green);
-    color: white;
-}
-
-.messages .error {
-    background-color: var(--red);
-    color: white;
-}
-
 .login-section__register-part {
     font-family: var(--font-text);
     color: var(--text-main);

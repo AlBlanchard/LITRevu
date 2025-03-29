@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TicketForm, ReviewForm
 from .models import Ticket, Review
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 
 def create_ticket(request):
@@ -38,7 +39,7 @@ def update_ticket(request, ticket_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Ticket modifié avec succès !")
-            return redirect("home")
+            return redirect("self_posts")
 
     form = TicketForm(instance=ticket)
     return render(
@@ -59,7 +60,7 @@ def delete_ticket(request, ticket_id):
     if request.method == "POST":
         ticket.delete()
         messages.success(request, "Le ticket a été supprimé avec succès !")
-        return redirect("home")
+        return redirect("self_posts")
 
     return render(request, "tickets/confirm_delete.html", {"ticket": ticket})
 
@@ -72,15 +73,24 @@ def create_review(request, ticket_id):
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
+
         if form.is_valid():
             review = form.save(commit=False)
             review.ticket = ticket
             review.user = request.user
-            review.save()
-            messages.success(request, "Avis créé avec succès !")
-            return redirect("home")
+
+            try:
+                review.full_clean()
+                review.save()
+                messages.success(request, "Critique postée avec succès !")
+                return redirect("home")
+
+            except ValidationError as e:
+                messages.error(request, e.messages[0])
+                return redirect("home")
 
     form = ReviewForm()
+
     return render(
         request,
         "tickets/form.html",
@@ -103,7 +113,7 @@ def update_review(request, review_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Avis modifié avec succès !")
-            return redirect("home")
+            return redirect("self_posts")
 
     form = ReviewForm(instance=review)
     return render(
@@ -124,7 +134,7 @@ def delete_review(request, review_id):
     if request.method == "POST":
         review.delete()
         messages.success(request, "L'avis a été supprimé avec succès !")
-        return redirect("home")
+        return redirect("self_posts")
 
     return render(request, "tickets/confirm_delete.html", {"review": review})
 

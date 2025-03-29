@@ -1,0 +1,34 @@
+.messages {
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    width: auto;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.messages li {
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.messages .success {
+    background-color: var(--green);
+    color: white;
+}
+
+.messages .error {
+    background-color: var(--red);
+    color: white;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

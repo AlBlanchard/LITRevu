@@ -73,7 +73,6 @@ def login_view(request):
             messages.success(request, f"Bienvenue {username} !")
             return redirect("home")
 
-        # return render(request, "users/login.html", {"error": "Invalid credentials"})
         messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
         return redirect("login")
 

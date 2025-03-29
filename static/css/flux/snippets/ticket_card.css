@@ -1,0 +1,14 @@
+.ticket-card__create-review {
+    align-self: flex-end;
+}
+
+.ticket-card__img-container {
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+.ticket-card__img-container img {
+    max-width: 256px;
+    max-height: 256px;
+}

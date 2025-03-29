@@ -10,9 +10,9 @@
 <section class="flux-section">
     <h2 class="flux-section__title">Flux d'activités</h2>
 
-    <div class="flux-session__create-buttons-container">
-        <a href="{% url 'ticket_create' %}" class="create-buttons">Créer un ticket</a>
-        <a href="{% url 'ticket_and_review_create' %}" class="create-buttons">Créer un ticket et une critique</a>
+    <div class="flux-session__buttons-container">
+        <a href="{% url 'ticket_create' %}" class="create-buttons btn btn-primary">Demander une critique</a>
+        <a href="{% url 'ticket_and_review_create' %}" class="create-buttons btn btn-primary">Créer une critique</a>
     </div>
 
     {% for post in posts %}

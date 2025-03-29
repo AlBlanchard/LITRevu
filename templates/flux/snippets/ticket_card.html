@@ -1,17 +1,22 @@
 {% load filters %}
+{% load static %}
 
-<article class="ticket-card">
-    <div class="ticket-card__header">
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/flux/snippets/ticket_card.css' %}">
+{% endblock %}
+
+<article class="ticket-card card">
+    <div class="ticket-card__header card-header">
         {% if post.user == request.user %}
             <p class="posted-user">Vous avez demandé une critique</p>
         {% else %}
             <p class="posted-user">{{ post.user }}</strong> a demandé une critique</p>
         {% endif %}
-            <p class="posted-time">{{ post.time_created|date:"d/m/Y H:i" }}</p>
+            <p class="posted-time">{{ post.time_created|date:"H:i, j F Y" }}</p>
     </div>
 
-    <h3 class="ticket-card__title">{{ post.book_title }}</h4>
-    <p class="ticket-card__title">{{ post.description }}</p>
+    <h3 class="ticket-card__title card-title">{{ post.book_title }}</h4>
+    <p class="ticket-card__description">{{ post.description }}</p>
 
     {% if post.image %}
     <div class="ticket-card__img-container">
@@ -20,11 +25,11 @@
     {% endif %}
 
     {% if not post.reviews.exists and not is_personal_view %}
-        <a href="{% url 'review_create' post.id %}" class="ticket-card__create-boutton create-buttons">Créer une critique</a>
+        <a href="{% url 'review_create' post.id %}" class="ticket-card__create-review btn btn-primary">Créer une critique</a>
     {% endif %}
 
     {% if is_personal_view %}
-        <a href="{% url 'ticket_update' post.id %}" class="ticket-card__modify create-buttons">Modifier</a>
-        <a href="{% url 'ticket_delete' post.id %}" class="ticket-card__delete create-buttons">Supprimer</a>
+        <a href="{% url 'ticket_update' post.id %}" class="ticket-card__modify btn btn-primary">Modifier</a>
+        <a href="{% url 'ticket_delete' post.id %}" class="ticket-card__delete btn btn-secondary">Supprimer</a>
     {% endif %}
 </article>

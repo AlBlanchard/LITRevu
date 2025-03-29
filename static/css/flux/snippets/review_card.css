@@ -1,0 +1,44 @@
+.review-card__title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.card-rating {
+    color: var(--title-color);
+    font-size: 1.2rem;
+}
+
+.review-card__ticket-container {
+    margin-top: 2rem;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem;
+    align-self: center;
+}
+
+.review-card__ticket-title {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.review-card__img-container {
+    margin-top: 2rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.review-card__img-container img {
+    max-width: 256px;
+    max-height: 256px;
+}
+
+@media (min-width: 1024px) {
+    .review-card__ticket-container {
+        width: 96%;
+        padding: 2.5rem;
+    }
+}

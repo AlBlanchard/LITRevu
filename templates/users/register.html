@@ -9,15 +9,6 @@
 <section class="register-section">
     <h2>Inscrivez-vous</h2>
 
-    <!-- Messages de succès et d'erreur -->
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     <!-- Formulaire -->
     <form class="register-section__form" method="post">
         {% csrf_token %}

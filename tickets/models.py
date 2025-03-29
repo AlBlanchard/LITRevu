@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 
 
 class Ticket(models.Model):
@@ -46,6 +47,15 @@ class Review(models.Model):
     review_title = models.CharField(max_length=120)
     review = models.TextField(blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        """Empêche la création si le ticket a déjà une review."""
+        # Vérifie d'abord que self.ticket existe bien
+        if not self.ticket_id:
+            return
+
+        if self.ticket.has_review:
+            raise ValidationError("Ce ticket a déjà une critique.")
 
     def __str__(self):
         return f"Critique de {self.ticket} par {self.user}"
