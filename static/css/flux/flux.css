@@ -31,8 +31,8 @@
 
 .card {
     width: 100%;
-    background-color: var(--bg-alt);
-    border: 1px solid var(--accent);
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 0 15px rgba(255, 204, 0, 0.05);

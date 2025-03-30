@@ -1,0 +1,33 @@
+{% load filters %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/tickets/snippets/review_form.css' %}">
+{% endblock %}
+
+<article class="review-form">
+    <h3>Critique</h3>
+
+    <div class="form-group">
+        {{ review_form.review_title.label_tag|safe|cut:":" }}
+        {{ review_form.review_title }}
+    </div>
+
+    <div class="form-group">
+        <label>Note</label>
+
+        <div class="form-radio radio-group">
+            {% for radio in review_form.rating %}
+                <div class="radio-container">
+                    {{ radio.tag }}  
+                    <label class="radio-label" aria-label={{radio.choice_label}}>{{ radio.choice_label|full_stars }}{{ radio.choice_label|empty_stars }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ review_form.review.label_tag|safe|cut:":" }}
+        {{ review_form.review }}
+    </div>
+</article>

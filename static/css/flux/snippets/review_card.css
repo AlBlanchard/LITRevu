@@ -13,8 +13,8 @@
 .review-card__ticket-container {
     margin-top: 2rem;
     width: 100%;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-card);
+    border: 2px solid var(--accent);
+    background-color: var(--bg-alt);
     border-radius: 8px;
     padding: 1rem;
     align-self: center;

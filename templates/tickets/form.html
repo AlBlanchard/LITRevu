@@ -1,26 +1,35 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/tickets/form.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
+<section class="form-section">
     <h2>{{ form_title }}</h2> 
 
-    {% if include_ticket %}
-        {% include "tickets/ticket.html" %}
-    {% endif %}
+    <form class="form-container" method="post" enctype="multipart/form-data">
 
-    <form method="post" enctype="multipart/form-data">
+        {% if include_ticket %}
+        <section class="ticket-section">
+            <p class="ticket-section__p">Vous êtes en train de poster en réponse à</p>
+            {% include "flux/snippets/ticket_card.html" %}
+        </section>
+        {% endif %}
+
         {% csrf_token %}
 
         {% if include_ticket_form %}
-            {% include "tickets/ticket_form.html" %}
+            {% include "tickets/snippets/ticket_form.html" %}
         {% endif %}
 
         {% if include_review_form %}
-            {% include "tickets/review_form.html" %}
+            {% include "tickets/snippets/review_form.html" %}
         {% endif %}
 
-        <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
-        <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Annuler</a>
+        <button type="submit" class="submit-button btn btn-primary">{{ submit_text }}</button>
+        
     </form>
-</div>
+</section>
 {% endblock %}

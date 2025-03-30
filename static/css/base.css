@@ -140,9 +140,7 @@ input[type="file"] {
     color: var(--text-main);
 }
 
-label {
-    display: none;
-}
+
   
 @media (min-width: 1024px) {
     .main {

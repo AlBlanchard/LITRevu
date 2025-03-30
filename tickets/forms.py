@@ -4,20 +4,21 @@ from .models import Ticket, Review
 
 class TicketForm(forms.ModelForm):
     book_title = forms.CharField(
+        label="Titre",
+        max_length=100,
         required=True,
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Veuillez entrer le titre du livre",
             }
         ),
     )
     description = forms.CharField(
+        max_length=800,
         required=False,
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
-                "placeholder": "Veuillez entrer une description",
             }
         ),
     )
@@ -33,10 +34,10 @@ class TicketForm(forms.ModelForm):
 
 class ReviewForm(forms.ModelForm):
     review_title = forms.CharField(
+        label="Titre",
+        max_length=100,
         required=True,
-        widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Veuillez entrer un titre"}
-        ),
+        widget=forms.TextInput(attrs={"class": "form-control"}),
     )
     rating = forms.ChoiceField(
         choices=[(i, str(i)) for i in range(6)],
@@ -44,11 +45,12 @@ class ReviewForm(forms.ModelForm):
         required=True,
     )
     review = forms.CharField(
+        label="Commentaire",
+        max_length=800,
         required=False,
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
-                "placeholder": "Veuillez entrer un commentaire",
             }
         ),
     )

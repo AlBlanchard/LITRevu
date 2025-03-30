@@ -1,14 +1,35 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="container">
-    <h2>Supprimer le ticket</h2>
-    <p>Êtes-vous sûr de vouloir supprimer ce ticket : <strong>{{ ticket.title }}</strong> ?</p>
+{% load static %}
 
-    <form method="post">
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/tickets/confirm_delete.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flux/flux.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flux/snippets/ticket_card.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flux/snippets/review_card.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<section class="delete-section">
+    <h2>Supprimer le ticket</h2>
+
+    {% if is_ticket %}
+    <p>Êtes-vous sûr de vouloir supprimer ce ticket ?</p>
+
+        {% include "flux/snippets/ticket_card.html" %}
+
+    {% else %}
+    <p>Êtes-vous sûr de vouloir supprimer cette critique ?</p>
+
+        {% include "flux/snippets/review_card.html" %}
+
+    {% endif %}
+
+    <form class="delete-form" method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Supprimer</button>
-        <a href="{% url 'home' %}" class="btn btn-secondary">Annuler</a>
+        <a href="{% url 'self_posts' %}" class="btn btn-secondary">Annuler</a>
     </form>
-</div>
+</section>
 {% endblock %}

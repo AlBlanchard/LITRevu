@@ -1,0 +1,62 @@
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/tickets/snippets/ticket_form.css' %}">
+{% endblock %}
+
+<article class="ticket-form">
+    {% if include_review_form %}
+        <h3>Livre / Article</h3>
+    {% endif %}
+
+    <div class="form-group">
+        {{ ticket_form.book_title.label_tag|safe|cut:":" }}
+        {{ ticket_form.book_title }}
+    </div>
+
+    <div class="form-group">
+        {{ ticket_form.description.label_tag|safe|cut:":"  }}
+        {{ ticket_form.description }}
+    </div>
+
+    <div class="form-group form-upload-container">
+        {{ ticket_form.image.label_tag|safe|cut:":" }}
+
+        <div id="image-preview-container" style="margin-top: 10px;">
+            {% if post.image %}
+                <img id="image-preview" src="{{ post.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
+            {% else %}
+                <img id="image-preview" style="display: none; max-width: 300px; height: auto;">
+            {% endif %}
+        </div>
+
+        <label for="id_image" class="btn btn-secondary" aria-hidden="true">Télécharger fichier</label>
+        {{ ticket_form.image }}
+    </div>
+</article>
+
+<!-- Petit script JS pour afficher l'image choisi-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const imageInput = document.querySelector("#id_image");
+        const previewContainer = document.querySelector("#image-preview-container");
+        const previewImage = document.querySelector("#image-preview");
+
+        imageInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = "block";
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = "none";
+            }
+        });
+    });
+</script>

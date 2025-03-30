@@ -44,10 +44,11 @@ def update_ticket(request, ticket_id):
     form = TicketForm(instance=ticket)
     return render(
         request,
-        "tickets/ticket_form.html",
+        "tickets/form.html",
         {
-            "form": form,
-            "ticket": ticket,
+            "ticket_form": form,
+            "post": ticket,
+            "include_ticket_form": True,
             "form_title": "Modifier le ticket",
             "submit_text": "Mettre à jour",
         },
@@ -62,7 +63,11 @@ def delete_ticket(request, ticket_id):
         messages.success(request, "Le ticket a été supprimé avec succès !")
         return redirect("self_posts")
 
-    return render(request, "tickets/confirm_delete.html", {"ticket": ticket})
+    return render(
+        request,
+        "tickets/confirm_delete.html",
+        {"post": ticket, "is_ticket": True},
+    )
 
 
 ###### REVIEW ######
@@ -96,7 +101,7 @@ def create_review(request, ticket_id):
         "tickets/form.html",
         {
             "review_form": form,
-            "ticket": ticket,
+            "post": ticket,
             "form_title": "Créer une critique",
             "submit_text": "Envoyer",
             "include_ticket": True,
@@ -118,10 +123,11 @@ def update_review(request, review_id):
     form = ReviewForm(instance=review)
     return render(
         request,
-        "tickets/review_form.html",
+        "tickets/form.html",
         {
-            "form": form,
-            "review": review,
+            "review_form": form,
+            "post": review,
+            "include_review_form": True,
             "form_title": "Modifier l'avis",
             "submit_text": "Mettre à jour",
         },
@@ -136,7 +142,7 @@ def delete_review(request, review_id):
         messages.success(request, "L'avis a été supprimé avec succès !")
         return redirect("self_posts")
 
-    return render(request, "tickets/confirm_delete.html", {"review": review})
+    return render(request, "tickets/confirm_delete.html", {"post": review})
 
 
 ###### Critique ######
@@ -167,7 +173,7 @@ def create_ticket_and_review(request):
             "ticket_form": ticket_form,
             "review_form": review_form,
             "form_title": "Créer un ticket et une critique",
-            "submit_text": "Publier",
+            "submit_text": "Envoyer",
             "include_ticket_form": True,  # Active l'affichage du ticket form
             "include_review_form": True,
         },

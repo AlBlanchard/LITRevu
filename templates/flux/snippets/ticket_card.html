@@ -24,7 +24,7 @@
     </div>
     {% endif %}
 
-    {% if not post.reviews.exists and not is_personal_view %}
+    {% if not post.reviews.exists and not is_personal_view and not include_ticket and not is_ticket %}
         <a href="{% url 'review_create' post.id %}" class="ticket-card__create-review btn btn-primary">Créer une critique</a>
     {% endif %}
 
