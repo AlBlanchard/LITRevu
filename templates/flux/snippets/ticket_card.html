@@ -7,24 +7,24 @@
 
 <article class="ticket-card card">
     <div class="ticket-card__header card-header">
-        {% if post.user == request.user %}
+        {% if ticket.user == request.user %}
             <p class="posted-user">Vous avez demandé une critique</p>
         {% else %}
-            <p class="posted-user">{{ post.user }}</strong> a demandé une critique</p>
+            <p class="posted-user">{{ ticket.user }}</strong> a demandé une critique</p>
         {% endif %}
-            <p class="posted-time">{{ post.time_created|date:"H:i, j F Y" }}</p>
+            <p class="posted-time">{{ ticket.time_created|date:"H:i, j F Y" }}</p>
     </div>
 
-    <h3 class="ticket-card__title card-title">{{ post.book_title }}</h3>
-    <p class="ticket-card__description">{{ post.description }}</p>
+    <h3 class="ticket-card__title card-title">{{ ticket.title }}</h3>
+    <p class="ticket-card__description">{{ ticket.description }}</p>
 
-    {% if post.image %}
+    {% if ticket.image %}
     <div class="ticket-card__img-container">
-        <img src="{{ post.image.url }}" class="img-fluid" alt="Image du ticket">
+        <img src="{{ ticket.image.url }}" class="img-fluid" alt="Image du ticket">
     </div>
     {% endif %}
 
-    {% if not post.reviews.exists and not is_personal_view and not include_ticket and not is_ticket %}
+    {% if not ticket.reviews.exists and not is_personal_view and not include_ticket and not is_ticket %}
         <a href="{% url 'review_create' post.id %}" class="ticket-card__create-review btn btn-primary">Créer une critique</a>
     {% endif %}
 

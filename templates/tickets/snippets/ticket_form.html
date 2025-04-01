@@ -10,8 +10,8 @@
     {% endif %}
 
     <div class="form-group">
-        {{ ticket_form.book_title.label_tag|safe|cut:":" }}
-        {{ ticket_form.book_title }}
+        {{ ticket_form.title.label_tag|safe|cut:":" }}
+        {{ ticket_form.title }}
     </div>
 
     <div class="form-group">
@@ -24,7 +24,7 @@
 
         <div id="image-preview-container" style="margin-top: 10px;">
             {% if post.image %}
-                <img id="image-preview" src="{{ post.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
+                <img id="image-preview" src="{{ ticket.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
             {% else %}
                 <img id="image-preview" style="display: none; max-width: 300px; height: auto;">
             {% endif %}

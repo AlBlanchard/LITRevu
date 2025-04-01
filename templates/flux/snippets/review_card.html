@@ -9,35 +9,35 @@
 <article class="review-card card">
     <div class="review-card__review-container">
         <div class="review-card__header card-header">
-            {% if post.user == request.user %}
+            {% if review.user == request.user %}
                 <p class="posted-user">Vous avez posté une critique</p>
             {% else %}
-                <p class="posted-user">{{ post.user }}</strong> a posté une critique</p>
+                <p class="posted-user">{{ review.user }}</strong> a posté une critique</p>
             {% endif %}
-                <p class="posted-time">{{ post.time_created|date:"H:i, j F Y" }}</p>
+                <p class="posted-time">{{ review.time_created|date:"H:i, j F Y" }}</p>
         </div>
 
         <div class="review-card__title-container">
-            <h3 class="card-title">{{ post.review_title }}</h3>
+            <h3 class="card-title">{{ review.title }}</h3>
             <span>-</span>
-            <div class="card-rating">{{ post.rating|full_stars }}{{ post.rating|empty_stars }}</div>
+            <div class="card-rating">{{ review.rating|full_stars }}{{ review.rating|empty_stars }}</div>
         </div>
 
-        <p class="card-text">{{ post.review }}</p>
+        <p class="card-text">{{ review.description }}</p>
     </div>
 
     <div class="review-card__ticket-container">
-        {% if post.user == request.user %}
+        {% if review.user == request.user %}
             <p class="review-card__ticket-posted-by">Ticket - Vous</p>
         {% else %}
-            <p class="review-card__ticket-posted-by">Ticket - {{ post.user }}</p>
+            <p class="review-card__ticket-posted-by">Ticket - {{ review.user }}</p>
         {% endif %}
 
-        <h4 class="review-card__ticket-title">{{post.ticket.book_title}}</h4>
+        <h4 class="review-card__ticket-title">{{review.ticket.title}}</h4>
 
-        {% if post.ticket.image %}
+        {% if review.ticket.image %}
         <div class="review-card__img-container">
-            <img src="{{ post.ticket.image.url }}" class="img-fluid" alt="Image du ticket">
+            <img src="{{ review.ticket.image.url }}" class="img-fluid" alt="Image du ticket">
         </div>
         {% endif %}
     </div>

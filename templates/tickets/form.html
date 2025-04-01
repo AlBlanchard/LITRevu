@@ -12,10 +12,15 @@
     <form class="form-container" method="post" enctype="multipart/form-data">
 
         {% if include_ticket %}
-        <section class="ticket-section">
-            <p class="ticket-section__p">Vous êtes en train de poster en réponse à</p>
-            {% include "flux/snippets/ticket_card.html" %}
-        </section>
+            <section class="ticket-section">
+                {% if update %}
+                    <p class="ticket-section__p">Vous êtes en train de modifier votre réponse à</p>
+                    {% include "flux/snippets/ticket_card.html" with ticket=review.ticket %}
+                {% else %}
+                    <p class="ticket-section__p">Vous êtes en train de poster en réponse à</p>
+                    {% include "flux/snippets/ticket_card.html" %}
+                {% endif %}
+            </section>
         {% endif %}
 
         {% csrf_token %}

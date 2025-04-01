@@ -37,6 +37,10 @@
     gap: 1rem;
 }
 
+.login-form label {
+    display: none;
+}
+
 .login-form input {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);

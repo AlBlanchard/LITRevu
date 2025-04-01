@@ -9,8 +9,8 @@
     <h3>Critique</h3>
 
     <div class="form-group">
-        {{ review_form.review_title.label_tag|safe|cut:":" }}
-        {{ review_form.review_title }}
+        {{ review_form.title.label_tag|safe|cut:":" }}
+        {{ review_form.title }}
     </div>
 
     <div class="form-group">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-        {{ review_form.review.label_tag|safe|cut:":" }}
-        {{ review_form.review }}
+        {{ review_form.description.label_tag|safe|cut:":" }}
+        {{ review_form.description }}
     </div>
 </article>

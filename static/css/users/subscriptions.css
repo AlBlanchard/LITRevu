@@ -9,6 +9,10 @@
     margin-bottom: 64px;
 }
 
+.subscriptions-section label {
+    display: none;
+}
+
 .subscriptions-section h2 {
     margin-bottom: 1.5rem;
 }

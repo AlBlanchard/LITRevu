@@ -12,20 +12,35 @@
         <h2 class="flux-section__title">Vos posts</h2>
 
     {% else %}
-        <h2 class="flux-section__title">Flux</h2>
-        
         <div class="flux-session__buttons-container">
             <a href="{% url 'ticket_create' %}" class="create-buttons btn btn-primary">Demander une critique</a>
             <a href="{% url 'ticket_and_review_create' %}" class="create-buttons btn btn-primary">Créer une critique</a>
         </div>
     {% endif %}
 
+    {% if posts %}
     {% for post in posts %}
         {% if post.content_type == "TICKET" %}
-            {% include "flux/snippets/ticket_card.html" %}
+            {% include "flux/snippets/ticket_card.html" with ticket=post %}
         {% elif post.content_type == "REVIEW" %}
-            {% include "flux/snippets/review_card.html" %}
+            {% include "flux/snippets/review_card.html" with review=post %}
         {% endif %}
     {% endfor %}
+{% else %}
+        <section class="no-posts-section card">
+            <p class="no-posts-msg">Aucun post à afficher pour le moment.</p>
+            {% if is_personal_view %}
+                <p class="no-posts-msg">Vous pouvez créer dès à présent une critique :</p>
+
+                <div class="flux-session__buttons-container">
+                    <a href="{% url 'ticket_create' %}" class="create-buttons btn btn-primary">Demander une critique</a>
+                    <a href="{% url 'ticket_and_review_create' %}" class="create-buttons btn btn-primary">Créer une critique</a>
+                </div>
+            {% else %}
+                <p class="no-posts-msg">Abonnez vous dès maintenant à des utilisateurs :</p>
+                <a class="btn btn-secondary" href="{% url 'subscriptions' %}">Abonnements</a>
+            {% endif %}
+        </section>
+{% endif %}
 </section>
 {% endblock %}

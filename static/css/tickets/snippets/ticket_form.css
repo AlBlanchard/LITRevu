@@ -6,7 +6,11 @@
     gap: 1.5rem;
 }
 
-.ticket-form textarea {
+.form-section input {
+    text-align: center;
+}
+
+.ticket-form textarea  {
     resize: vertical;
     max-width: 100%;
     height: 200px;

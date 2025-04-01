@@ -47,9 +47,9 @@ def update_ticket(request, ticket_id):
         "tickets/form.html",
         {
             "ticket_form": form,
-            "post": ticket,
+            "ticket": ticket,
             "include_ticket_form": True,
-            "form_title": "Modifier le ticket",
+            "form_title": "Modifier votre ticket",
             "submit_text": "Mettre à jour",
         },
     )
@@ -66,7 +66,7 @@ def delete_ticket(request, ticket_id):
     return render(
         request,
         "tickets/confirm_delete.html",
-        {"post": ticket, "is_ticket": True},
+        {"ticket": ticket, "is_ticket": True},
     )
 
 
@@ -101,7 +101,7 @@ def create_review(request, ticket_id):
         "tickets/form.html",
         {
             "review_form": form,
-            "post": ticket,
+            "ticket": ticket,
             "form_title": "Créer une critique",
             "submit_text": "Envoyer",
             "include_ticket": True,
@@ -126,9 +126,11 @@ def update_review(request, review_id):
         "tickets/form.html",
         {
             "review_form": form,
-            "post": review,
+            "review": review,
+            "include_ticket": True,
             "include_review_form": True,
-            "form_title": "Modifier l'avis",
+            "update": True,
+            "form_title": "Modifier votre critique",
             "submit_text": "Mettre à jour",
         },
     )
@@ -142,7 +144,7 @@ def delete_review(request, review_id):
         messages.success(request, "L'avis a été supprimé avec succès !")
         return redirect("self_posts")
 
-    return render(request, "tickets/confirm_delete.html", {"post": review})
+    return render(request, "tickets/confirm_delete.html", {"review": review})
 
 
 ###### Critique ######

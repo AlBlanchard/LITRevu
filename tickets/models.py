@@ -9,7 +9,7 @@ class Ticket(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tickets"
     )
-    book_title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="tickets_images/", blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
@@ -31,7 +31,7 @@ class Ticket(models.Model):
         super().delete(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.book_title} (créé par {self.user})"
+        return f"{self.title} (créé par {self.user})"
 
 
 class Review(models.Model):
@@ -44,8 +44,8 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    review_title = models.CharField(max_length=120)
-    review = models.TextField(blank=True)
+    title = models.CharField(max_length=120)
+    description = models.TextField(blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def clean(self):
@@ -54,7 +54,11 @@ class Review(models.Model):
         if not self.ticket_id:
             return
 
-        if self.ticket.has_review:
+        # pk est l'id de l'instance actuelle que créer temporairement Django
+        # Permet la modification du ticket sans lever d'erreur
+        # self.pk est None lors de la création d'une nouvelle instance
+        # self.pk est définie lors de la modification d'une instance existante
+        if self.ticket.reviews.exists() and not self.pk:
             raise ValidationError("Ce ticket a déjà une critique.")
 
     def __str__(self):

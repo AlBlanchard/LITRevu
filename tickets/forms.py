@@ -3,7 +3,7 @@ from .models import Ticket, Review
 
 
 class TicketForm(forms.ModelForm):
-    book_title = forms.CharField(
+    title = forms.CharField(
         label="Titre",
         max_length=100,
         required=True,
@@ -29,11 +29,11 @@ class TicketForm(forms.ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ("book_title", "description", "image")
+        fields = ("title", "description", "image")
 
 
 class ReviewForm(forms.ModelForm):
-    review_title = forms.CharField(
+    title = forms.CharField(
         label="Titre",
         max_length=100,
         required=True,
@@ -44,7 +44,7 @@ class ReviewForm(forms.ModelForm):
         widget=forms.RadioSelect(attrs={"class": "form-check-input"}),
         required=True,
     )
-    review = forms.CharField(
+    description = forms.CharField(
         label="Commentaire",
         max_length=800,
         required=False,
@@ -57,4 +57,4 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        fields = ["review_title", "rating", "review"]
+        fields = ["title", "rating", "description"]

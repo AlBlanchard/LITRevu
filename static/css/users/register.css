@@ -27,6 +27,10 @@
     gap: 1rem;
 }
 
+.register-section__form label {
+    display: none;
+}
+
 .register-section__form input {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);

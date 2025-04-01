@@ -60,6 +60,19 @@
     gap: 1rem;
 }
 
+.no-posts-section {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 24px;
+    margin-bottom: 64px;
+    text-align: center;
+}
+
 @media (min-width: 1024px) {
     .flux-section {
         width: 70%;
