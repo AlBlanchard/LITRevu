@@ -130,15 +130,15 @@ Une base de données accompagne le repository. Celle-ci comporte plusieurs utili
 
 1. Accès aux utilisateurs pré enregistrés
 
-> Login : **Admin** 
-
+> Login : **Admin**
+>
 > Mot de passe : **django10**
 
 *Il s'agit d'un super user*
 
 
 > Login : **User2**
-
+>
 > Mot de passe : **django20**
 
 ## Super User
