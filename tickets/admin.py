@@ -9,7 +9,7 @@ class TicketAdmin(admin.ModelAdmin):
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ["id", "title", "user", "time_created"]
+    list_display = ["id", "title", "user", "ticket", "time_created"]
     list_filter = ["time_created"]
     search_fields = ["user__username"]
 
