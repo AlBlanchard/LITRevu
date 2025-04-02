@@ -1,0 +1,14 @@
+.form-control,
+input,
+textarea,
+select {
+    border: 2px solid #4a9ee6 !important;
+    background-color: #0F1423 !important;
+    color: white !important;
+}
+
+.vTextField {
+    border: 2px solid #4a9ee6 !important;
+    background-color: #0F1423 !important;
+    color: white !important;
+}

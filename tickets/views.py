@@ -150,8 +150,8 @@ def delete_review(request, review_id):
 ###### Critique ######
 def create_ticket_and_review(request):
     if request.method == "POST":
-        ticket_form = TicketForm(request.POST, request.FILES)
-        review_form = ReviewForm(request.POST)
+        ticket_form = TicketForm(request.POST, request.FILES, prefix="ticket")
+        review_form = ReviewForm(request.POST, prefix="review")
 
         if ticket_form.is_valid() and review_form.is_valid():
             ticket = ticket_form.save(commit=False)
@@ -166,8 +166,10 @@ def create_ticket_and_review(request):
             messages.success(request, "Ticket et avis créés avec succès !")
             return redirect("home")
 
-    ticket_form = TicketForm()
-    review_form = ReviewForm()
+    # Evite les conflits avec les champs du même nom
+    ticket_form = TicketForm(prefix="ticket")
+    review_form = ReviewForm(prefix="review")
+
     return render(
         request,
         "tickets/form.html",
@@ -176,7 +178,7 @@ def create_ticket_and_review(request):
             "review_form": review_form,
             "form_title": "Créer un ticket et une critique",
             "submit_text": "Envoyer",
-            "include_ticket_form": True,  # Active l'affichage du ticket form
+            "include_ticket_form": True,
             "include_review_form": True,
         },
     )

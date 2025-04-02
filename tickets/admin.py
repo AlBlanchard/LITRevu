@@ -1,18 +1,21 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from .models import Ticket, Review
 
 
-class TicketAdmin(admin.ModelAdmin):
+@admin.register(Ticket)
+class TicketAdmin(ModelAdmin):
     list_display = ["id", "title", "user", "time_created", "has_review"]
     list_filter = ["time_created"]
     search_fields = ["title", "user__username"]
+    ordering = ["-time_created"]
+    date_hierarchy = "time_created"
 
 
-class ReviewAdmin(admin.ModelAdmin):
+@admin.register(Review)
+class ReviewAdmin(ModelAdmin):
     list_display = ["id", "title", "user", "ticket", "time_created"]
     list_filter = ["time_created"]
     search_fields = ["user__username"]
-
-
-admin.site.register(Ticket, TicketAdmin)
-admin.site.register(Review, ReviewAdmin)
+    ordering = ["-time_created"]
+    date_hierarchy = "time_created"

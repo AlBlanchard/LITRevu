@@ -30,7 +30,7 @@
             {% endif %}
         </div>
 
-        <label for="id_image" class="btn btn-secondary" aria-hidden="true">Télécharger fichier</label>
+        <label for="{{ ticket_form.image.id_for_label }}" class="btn btn-secondary">Télécharger fichier</label>
         {{ ticket_form.image }}
     </div>
 </article>
