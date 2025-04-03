@@ -23,7 +23,7 @@
         {{ ticket_form.image.label_tag|safe|cut:":" }}
 
         <div id="image-preview-container" style="margin-top: 10px;">
-            {% if post.image %}
+            {% if ticket.image %}
                 <img id="image-preview" src="{{ ticket.image.url }}" alt="Image sélectionnée" style="max-width: 300px; height: auto;">
             {% else %}
                 <img id="image-preview" style="display: none; max-width: 300px; height: auto;">
