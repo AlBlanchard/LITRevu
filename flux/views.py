@@ -31,11 +31,6 @@ def flux(request):
     )
 
 
-# Si une personne B fait un review sur ticket de A et qu'une personne C est abboné à B, la personne A verra t elle les reviews de B sur ses tickets ?
-# Si la personne B suit la A mais pas l'inverse, la personne A verra t elle les reviews de B ?
-# Filtre : porter sur tous les reviews sur les tickets qui m'appartiennent
-
-
 def self_posts(request):
     """Affiche uniquement les posts de l'utilisateur"""
     user = request.user
