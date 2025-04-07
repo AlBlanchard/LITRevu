@@ -37,11 +37,17 @@ def register(request):
                         "Le mot de passe est trop court (minimum 8 caractères)."
                     )
                 elif "This password is too common" in error:
-                    error_message = "Ce mot de passe est trop courant, veuillez en choisir un plus sécurisé."
+                    error_message = (
+                        "Mot de passe est trop courant, choisissez en un plus sécurisé."
+                    )
                 elif "This password is entirely numeric" in error:
-                    error_message = "Le mot de passe ne peut pas être uniquement composé de chiffres."
+                    error_message = (
+                        "Le mot de passe ne peut pas contenir uniquement des chiffres."
+                    )
                 elif "A user with that username already exists." in error:
-                    error_message = "Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre."
+                    error_message = (
+                        "Nom d'utilisateur déjà pris. Veuillez en choisir un autre."
+                    )
 
                 messages.error(request, f"{error_message}")
 

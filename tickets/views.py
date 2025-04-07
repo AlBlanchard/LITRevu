@@ -30,9 +30,8 @@ def create_ticket(request):
 
 
 def update_ticket(request, ticket_id):
-    ticket = get_object_or_404(
-        Ticket, id=ticket_id, user=request.user
-    )  #  Check que l'utilisateur est bien le propriétaire du ticket
+    #  Check que l'utilisateur est bien le propriétaire du ticket
+    ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
 
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES, instance=ticket)
@@ -70,7 +69,7 @@ def delete_ticket(request, ticket_id):
     )
 
 
-###### REVIEW ######
+# ---- REVIEW -----
 
 
 def create_review(request, ticket_id):
@@ -147,7 +146,7 @@ def delete_review(request, review_id):
     return render(request, "tickets/confirm_delete.html", {"review": review})
 
 
-###### Critique ######
+# ---- Critique -----
 def create_ticket_and_review(request):
     if request.method == "POST":
         ticket_form = TicketForm(request.POST, request.FILES, prefix="ticket")

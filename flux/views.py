@@ -4,9 +4,6 @@ from django.db.models import CharField, Value, Q
 from tickets.models import Ticket, Review
 
 
-from django.db.models import Q
-
-
 def flux(request):
     """Affiche le flux d'activités de l'utilisateur."""
     followed_users = request.user.following.values_list("followed_user", flat=True)
