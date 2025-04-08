@@ -40,7 +40,7 @@ Elle permet de publier des tickets pour demander une critique, d'y répondre, et
 ```bash
 git  clone  https://github.com/AlBlanchard/LITRevu.git
 
-cd  litreview
+cd  litrevu
 ```
 
   
