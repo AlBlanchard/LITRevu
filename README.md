@@ -1,9 +1,9 @@
 
-# LITReview
+# LITRevu
 
   
 
-LITReview est une application web Django permettant aux utilisateurs de partager, commenter et suivre des critiques de livres et d'articles.
+LITRevu est une application web Django permettant aux utilisateurs de partager, commenter et suivre des critiques de livres et d'articles.
 
 Elle permet de publier des tickets pour demander une critique, d'y répondre, et de suivre l'activité de ses abonnements via un flux.
 
