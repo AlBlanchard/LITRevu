@@ -77,7 +77,17 @@ pip  install  -r  requirements.txt
 
   
 
-**4. Créez un fichier .env à la racine du projet**
+**4. Appliquez les migrations**
+
+  
+
+```bash
+python  manage.py  migrate
+```
+
+  
+
+**5. Créez un fichier .env à la racine du projet**
 
   
 
@@ -100,19 +110,9 @@ https://djecrety.ir/
 Faites attention à ne pas divulguer votre clef sur github ou ailleurs.
 
 Pensez à désactiver le DEBUG pour le déploiement.
-
   
 
-**5. Appliquez les migrations**
-
-  
-
-```bash
-python  manage.py  migrate
-```
-  
-
-**6. Lancez le serveur**
+**7. Lancez le serveur**
 
   
 
