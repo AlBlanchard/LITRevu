@@ -111,6 +111,7 @@ def create_review(request, ticket_id):
 
 def update_review(request, review_id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
+    current_rating = str(review.rating)
 
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
@@ -131,6 +132,8 @@ def update_review(request, review_id):
             "update": True,
             "form_title": "Modifier votre critique",
             "submit_text": "Mettre à jour",
+            "current_rating": current_rating,
+            "rating_range": ["5", "4", "3", "2", "1"],
         },
     )
 

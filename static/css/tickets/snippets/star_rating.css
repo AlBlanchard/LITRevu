@@ -1,0 +1,25 @@
+.star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-size: 2rem;
+    display: flex;
+    justify-content: start;
+    align-self: flex-start;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: var(--text-main);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--title-color); 
+}
+  
