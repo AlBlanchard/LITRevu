@@ -105,6 +105,7 @@ def create_review(request, ticket_id):
             "submit_text": "Envoyer",
             "include_ticket": True,
             "include_review_form": True,
+            "rating_range": ["5", "4", "3", "2", "1"],
         },
     )
 
