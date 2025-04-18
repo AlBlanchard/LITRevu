@@ -105,6 +105,7 @@ def create_review(request, ticket_id):
             "submit_text": "Envoyer",
             "include_ticket": True,
             "include_review_form": True,
+            "rating_range": ["5", "4", "3", "2", "1"],
         },
     )
 
@@ -182,5 +183,6 @@ def create_ticket_and_review(request):
             "submit_text": "Envoyer",
             "include_ticket_form": True,
             "include_review_form": True,
+            "rating_range": ["5", "4", "3", "2", "1"],
         },
     )
