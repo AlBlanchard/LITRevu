@@ -38,9 +38,12 @@
 <!-- Petit script JS pour afficher l'image choisi-->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const imageInput = document.querySelector("#id_image");
+        // Sélectionne le premier champ image trouvé (avec ou sans prefix)
+        const imageInput = document.querySelector("input[type='file'][id$='image']");
         const previewContainer = document.querySelector("#image-preview-container");
         const previewImage = document.querySelector("#image-preview");
+
+        if (!imageInput) return;
 
         imageInput.addEventListener("change", function(event) {
             const file = event.target.files[0];

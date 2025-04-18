@@ -6,16 +6,15 @@
 {% endblock %}
 
 <div class="star-rating">
-    {% for i in rating_range %}
-        <input
-            type="radio"
-            id="star{{ i }}"
-            name="rating"
-            value="{{ i }}"
-            {% if i == current_rating %}checked{% endif %}
-        >
-        <label for="star{{ i }}" title="{{ i }} étoiles" aria-label="{{ i }} étoiles">&#9733;</label>
-    {% endfor %}
-
-  </div>
+  {% for i in rating_range %}
+    <input
+      type="radio"
+      id="star{{ i }}"
+      name="{{ review_form.rating.html_name }}"
+      value="{{ i }}"
+      {% if i == current_rating %}checked{% endif %}
+    >
+    <label for="star{{ i }}" title="{{ i }} étoiles" aria-label="{{ i }} étoiles">&#9733;</label>
+  {% endfor %}
+</div>
   
